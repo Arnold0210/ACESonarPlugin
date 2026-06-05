@@ -20,7 +20,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <sonar.api.version>26.6.0.123539</sonar.api.version>
+        <sonar.api.version>13.5.0.4319</sonar.api.version>
     </properties>
 
 </project>
