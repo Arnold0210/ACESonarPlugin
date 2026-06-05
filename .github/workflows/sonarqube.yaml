@@ -27,7 +27,7 @@ jobs:
         run: mvn clean verify
 
       - name: Debug Sonar URL
-        run: echo "$SONAR_HOST_URL"
+        run: echo $SONAR_HOST_URL
         env:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
