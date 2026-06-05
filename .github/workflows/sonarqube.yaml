@@ -12,7 +12,7 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
-
+    environment: SonarQube   # 👈 revisa que coincida EXACTO
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,10 +25,17 @@ jobs:
 
       - name: Build
         run: mvn clean verify
-      - name: Echo variable
-        run: echo ${{ secrets.SONAR_HOST_URL }}
+
+      - name: Debug Sonar URL
+        run: echo "$SONAR_HOST_URL"
+        env:
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+
       - name: Sonar Scan
         run: |
           mvn sonar:sonar \
-            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }} \
-            -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+            -Dsonar.host.url=$SONAR_HOST_URL \
+            -Dsonar.token=$SONAR_TOKEN
+        env:
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
